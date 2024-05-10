@@ -1,0 +1,93 @@
+﻿@page "/books/details"
+@inject Reviews.Data.ApplicationDbContext DB
+@using Reviews.Components
+@inject NavigationManager NavigationManager
+@using Microsoft.EntityFrameworkCore
+@rendermode InteractiveServer
+<PageTitle>Details</PageTitle>
+
+<h1>Details</h1>
+
+<div>
+        
+    
+    <hr />
+    @if (book is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else {
+        <div class="row">
+            <div class="col-sm-2">
+                <button class="btn btn-primary" @onclick="AddReview">Add review</button>
+            </div>
+            <div class="col-sm-2">
+                <input type="number" id="rate" @bind="text" min="0" max="10" onkeyup="if(value<0 || value>10) value=0;" class=" form-control" />
+            </div>
+        </div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">Author</dt>
+            <dd class="col-sm-10">@book.Author</dd>
+            <dt class="col-sm-2">Title</dt>
+            <dd class="col-sm-10">@book.Title</dd>
+            <dt class="col-sm-2">Genre</dt>
+            <dd class="col-sm-10">@book.Genre</dd>
+            <dt class="col-sm-2">ReleaseDate</dt>
+            <dd class="col-sm-10">@book.ReleaseDate</dd>
+            <dt class="col-sm-2">Rate</dt>
+            <dd class="col-sm-10">@Math.Round((decimal)book.Rate,1)</dd>
+        </dl>
+        <img src="@book.ImageURL" width="400" height="600"/>
+        <div>
+            <a href="@($"/books/edit?id={book.Id}")">Edit</a> |
+            <a href="@($"/books")">Back to List</a>
+        </div>
+    }
+</div>
+
+@code {
+    Book? book;
+    float text;
+
+    [SupplyParameterFromQuery]
+    public int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        book = await DB.Book.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (book is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+    protected async Task AddReview()
+    {
+        Console.WriteLine("TransformString method invoked");
+        if (book is not null)
+        {
+            book.Rate = (book.Rate + text) / 2;
+            
+            await DB.SaveChangesAsync();
+        }
+        /*DB.Attach(book!).State = EntityState.Modified;
+
+        try
+        {
+            await DB.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (book is not null)
+            {
+                NavigationManager.NavigateTo("notfound");
+            }
+            else
+            {
+                throw;
+            }
+        }*/
+
+    }
+}

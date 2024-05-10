@@ -1,0 +1,68 @@
+﻿@page "/books/create"
+@inject Reviews.Data.ApplicationDbContext DB
+@using Reviews.Components
+@inject NavigationManager NavigationManager
+
+<PageTitle>Create</PageTitle>
+
+<h1>Create</h1>
+
+<h4>Book</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Book" OnValidSubmit="AddBook" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" />
+            <div class="mb-3">
+                <label for="author" class="form-label">Author:</label> 
+                <InputText id="author" @bind-Value="Book.Author" class="form-control" /> 
+                <ValidationMessage For="() => Book.Author" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="title" class="form-label">Title:</label> 
+                <InputText id="title" @bind-Value="Book.Title" class="form-control" /> 
+                <ValidationMessage For="() => Book.Title" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="genre" class="form-label">Genre:</label> 
+                <InputText id="genre" @bind-Value="Book.Genre" class="form-control" /> 
+                <ValidationMessage For="() => Book.Genre" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="releasedate" class="form-label">ReleaseDate:</label> 
+                <InputDate id="releasedate" @bind-Value="Book.ReleaseDate" class="form-control" /> 
+                <ValidationMessage For="() => Book.ReleaseDate" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="rate" class="form-label">Rate (from 1-10):</label> 
+                <InputNumber id="rate" @bind-Value="Book.Rate" step="0.5" min="0" max="10" onkeyup="if(value<0 || value>10) value=0;" class="form-control" />
+                <ValidationMessage For="() => Book.Rate" class="text-danger" /> 
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Image URL:</label>
+                <InputText id="image" @bind-Value="Book.ImageURL" class="form-control" />
+                <ValidationMessage For="() => Book.ImageURL" class="text-danger" />
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/books">Back to List</a>
+</div>
+
+@code {
+
+    [SupplyParameterFromForm]
+    public Book Book { get; set; } = new();
+
+    // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+    public async Task AddBook()
+    {
+        DB.Book.Add(Book);
+        await DB.SaveChangesAsync();
+        NavigationManager.NavigateTo("/books");
+    }
+}

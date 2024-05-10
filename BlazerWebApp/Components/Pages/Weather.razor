@@ -1,0 +1,98 @@
+﻿@page "/weather"
+@attribute [StreamRendering]
+@rendermode InteractiveServer
+<PageTitle>Weather</PageTitle>
+
+<h1>Weather</h1>
+<p role="status">Number of warm days: @warmDays</p>
+<button class="btn btn-primary" @onclick="FilterColdDays">Filter Cold Days</button>
+<button class="btn btn-primary" @onclick="Restore">Restore</button>
+<input class="form-control" @oninput="Input"></input>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+}
+
+@code {
+    private WeatherForecast[]? forecasts;
+    private int warmDays = 0;
+    private WeatherForecast[]? originForecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Simulate asynchronous loading to demonstrate streaming rendering
+        await Task.Delay(500);
+
+        var startDate = DateOnly.FromDateTime(DateTime.Now);
+        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
+        forecasts = Enumerable.Range(1, 10).Select(index => new WeatherForecast
+        {
+            Date = startDate.AddDays(index),
+            TemperatureC = Random.Shared.Next(-20, 55),
+            Summary = summaries[Random.Shared.Next(summaries.Length)]
+        }).ToArray();
+        foreach (WeatherForecast forecast in forecasts) {
+            if (forecast.TemperatureC > 15)
+            {
+                warmDays++;
+            }
+        }
+        originForecasts = forecasts;
+    }
+    protected async Task FilterColdDays()
+    {
+        // Simulate asynchronous loading to demonstrate streaming rendering
+        await Task.Delay(100);
+        forecasts = forecasts.Where(forecast => forecast.TemperatureC > 15).ToArray();
+    }
+    protected async Task Restore()
+    {
+        // Simulate asynchronous loading to demonstrate streaming rendering
+        await Task.Delay(100);
+        forecasts = originForecasts;
+    }
+    private async Task Input(ChangeEventArgs arg)
+    {
+        // Simulate asynchronous loading to demonstrate streaming rendering
+        await Task.Delay(100);
+        forecasts = forecasts.Where(forecast => forecast.Summary.ToLower().Contains(arg.Value.ToString())).ToArray();
+        if (arg.Value.ToString() == "")
+        {
+            forecasts = originForecasts;
+        }
+    }
+
+    private class WeatherForecast
+    {
+        public DateOnly Date { get; set; }
+        public int TemperatureC { get; set; }
+        public string? Summary { get; set; }
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    }
+}

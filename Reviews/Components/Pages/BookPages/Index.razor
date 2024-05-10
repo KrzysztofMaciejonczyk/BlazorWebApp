@@ -1,0 +1,28 @@
+﻿@page "/books"
+@using Microsoft.AspNetCore.Components.QuickGrid
+@inject Reviews.Data.ApplicationDbContext DB
+@using Microsoft.EntityFrameworkCore
+@using Reviews.Components
+@using Microsoft.AspNetCore.Authorization
+@rendermode InteractiveServer
+
+@attribute [Authorize]
+<PageTitle>Index</PageTitle>
+
+<h1>Book table</h1>
+
+<p>
+    <a href="books/create">Add new book</a>
+</p>
+
+<QuickGrid Class="table" Items="DB.Book">
+    <PropertyColumn Property="book => book.Author" Sortable="true" />
+    <PropertyColumn Property="book => book.Title" Sortable="true" />
+    <PropertyColumn Property="book => book.Genre" Sortable="true" />
+    <PropertyColumn Property="book => Math.Round((decimal)book.Rate,1)" Title="Rate" Sortable="true" />
+    <TemplateColumn Context="book">
+        <a href="@($"books/edit?id={book.Id}")">Edit</a> |
+        <a href="@($"books/details?id={book.Id}")">Details</a> |
+        <a href="@($"books/delete?id={book.Id}")">Delete</a>
+    </TemplateColumn>
+</QuickGrid>
