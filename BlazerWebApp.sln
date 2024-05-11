@@ -7,6 +7,32 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazerWebApp", "BlazerWebAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reviews", "Reviews\Reviews.csproj", "{C14E64DC-1833-4D22-A65E-CFE5542A2F9F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Screenshots", "Screenshots", "{0C6C1A92-4690-4928-9438-64BBA4AEB7D6}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Pictures\Blazor\Book_Class.PNG = ..\..\..\Pictures\Blazor\Book_Class.PNG
+		..\..\..\Pictures\Blazor\Reviews_Account.PNG = ..\..\..\Pictures\Blazor\Reviews_Account.PNG
+		..\..\..\Pictures\Blazor\Reviews_Add_Rating.PNG = ..\..\..\Pictures\Blazor\Reviews_Add_Rating.PNG
+		..\..\..\Pictures\Blazor\Reviews_Books.PNG = ..\..\..\Pictures\Blazor\Reviews_Books.PNG
+		..\..\..\Pictures\Blazor\Reviews_Create.PNG = ..\..\..\Pictures\Blazor\Reviews_Create.PNG
+		..\..\..\Pictures\Blazor\Reviews_Default.PNG = ..\..\..\Pictures\Blazor\Reviews_Default.PNG
+		..\..\..\Pictures\Blazor\Reviews_Delete.PNG = ..\..\..\Pictures\Blazor\Reviews_Delete.PNG
+		..\..\..\Pictures\Blazor\Reviews_Details_Add.PNG = ..\..\..\Pictures\Blazor\Reviews_Details_Add.PNG
+		..\..\..\Pictures\Blazor\Reviews_Details_Image.PNG = ..\..\..\Pictures\Blazor\Reviews_Details_Image.PNG
+		..\..\..\Pictures\Blazor\Reviews_Edit.PNG = ..\..\..\Pictures\Blazor\Reviews_Edit.PNG
+		..\..\..\Pictures\Blazor\Reviews_Image.PNG = ..\..\..\Pictures\Blazor\Reviews_Image.PNG
+		..\..\..\Pictures\Blazor\Reviews_Login.PNG = ..\..\..\Pictures\Blazor\Reviews_Login.PNG
+		..\..\..\Pictures\Blazor\Reviews_Rate.PNG = ..\..\..\Pictures\Blazor\Reviews_Rate.PNG
+		..\..\..\Pictures\Blazor\Reviews_Register.PNG = ..\..\..\Pictures\Blazor\Reviews_Register.PNG
+		..\..\..\Pictures\Blazor\Reviews_Sorting.PNG = ..\..\..\Pictures\Blazor\Reviews_Sorting.PNG
+		..\..\..\Pictures\Blazor\Tree.PNG = ..\..\..\Pictures\Blazor\Tree.PNG
+		..\..\..\Pictures\Blazor\Weather_Code.PNG = ..\..\..\Pictures\Blazor\Weather_Code.PNG
+		..\..\..\Pictures\Blazor\Weather_Default.PNG = ..\..\..\Pictures\Blazor\Weather_Default.PNG
+		..\..\..\Pictures\Blazor\Weather_FilterCold.PNG = ..\..\..\Pictures\Blazor\Weather_FilterCold.PNG
+		..\..\..\Pictures\Blazor\Weather_HTML.PNG = ..\..\..\Pictures\Blazor\Weather_HTML.PNG
+		..\..\..\Pictures\Blazor\Weather_Input.PNG = ..\..\..\Pictures\Blazor\Weather_Input.PNG
+		..\..\..\Pictures\Blazor\Weather_Restore.PNG = ..\..\..\Pictures\Blazor\Weather_Restore.PNG
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

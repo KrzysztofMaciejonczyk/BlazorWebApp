@@ -81,7 +81,7 @@ else
     {
         // Simulate asynchronous loading to demonstrate streaming rendering
         await Task.Delay(100);
-        forecasts = forecasts.Where(forecast => forecast.Summary.ToLower().Contains(arg.Value.ToString())).ToArray();
+        forecasts = forecasts.Where(forecast => forecast.Summary.ToLower().Contains(arg.Value.ToString().ToLower())).ToArray();
         if (arg.Value.ToString() == "")
         {
             forecasts = originForecasts;
