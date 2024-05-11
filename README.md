@@ -4,16 +4,14 @@ Autor: Krzysztof Maciejończyk
 
 Opis programu:
 
-Repozytorium podzielone jest na dwa projekty. Jeden z nich zawiera podstawową wersję Blazor Web App z klasą Weather, rozwiniętą o dodatkowe możliwości, takie jak wyfiltrowanie zimnych dni z tabeli, wypisanie liczby ciepłych dni, czy filtracja w polu tekstowym. Poniżej przedstawiono fragmenty kodu oraz zrzuty ekranów poszczególnych funkcjonalności strony.
+Repozytorium podzielone jest na dwa projekty. Jeden z nich zawiera podstawową wersję Blazor Web App (**-BlazerWebApp** - pierwszy projekt (zadanie 1)) z klasą Weather, rozwiniętą o dodatkowe możliwości, takie jak wyfiltrowanie zimnych dni z tabeli, wypisanie liczby ciepłych dni, czy filtracja w polu tekstowym. Poniżej przedstawiono fragmenty kodu oraz zrzuty ekranów poszczególnych funkcjonalności strony.
 
 
-Drugi projekt to strona internetowa w postaci biblioteki książek. W celu dostania się do bazy danych użytkownik musi na początku się zarejestrować, a następnie zalogować, ponieważ opcja wyswietlenia biblioteki książek jest blokowana bez autoryzacji. Po zalogowaniu zakładka Books wyświetla książki oraz ich ogólne informacje. Dodatkowo utworzono stronę internetową na platformie Azure.
 
-**-LAB3** - konsolowa wersja przemnażania macierzy (zadanie 1 i 2).
+Drugi projekt to strona internetowa w postaci biblioteki książek (**-Reviews** - drugi projekt (zadanie 2 i 3)). W celu dostania się do bazy danych użytkownik musi na początku się zarejestrować, a następnie zalogować, ponieważ opcja wyswietlenia biblioteki książek jest blokowana bez autoryzacji. Po zalogowaniu zakładka Books wyświetla książki oraz ich ogólne informacje. Dodatkowo utworzono stronę internetową na platformie Azure.
 
-**-ThreadVsParallelGUI** - aplikacja do przemnażania macierzy (zadanie 1 i 2).
 
-**-ImageParalleling** - aplikacja do przetwarzania obrazów (zadanie 3).
+
 
 LAB3 umożliwia użytkownikowi obliczanie wyniku mnożenia macierzy po odpowiednim wpisaniu liczby użytych w tym celu wątków oraz wielkości macierzy (NxN). Po prawidłowym uzupełnieniu, program wypisuje macierze wejściowe, czas potrzebny bibliotece Thread i Parallel do wykonania obliczeń oraz macierz wynikową. Utworzona została tutaj klasa **CustomMatrix.cs**, żeby konstruować macierze o podanym rozmiarze, uzupełniając ich pola cyframi psuedolosowymi od 1 do 9. W klasie tej też zamieszczono przeciążoną funkcję ToString(), żeby łatwiej wyświetlać macierze. Pozostałe projekty też korzystają z tej klasy, żeby przeprowadzać obliczenia.
 
